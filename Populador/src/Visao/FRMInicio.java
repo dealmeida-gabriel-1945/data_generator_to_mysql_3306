@@ -46,13 +46,13 @@ public class FRMInicio extends javax.swing.JFrame {
         setTitle("Conectar");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Nome do BD:");
+        jLabel1.setText("DB name:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("User:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Senha:");
+        jLabel3.setText("Password:");
 
         TFBD.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         TFBD.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -99,7 +99,7 @@ public class FRMInicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TFBD)
-                            .addComponent(TFUser, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                            .addComponent(TFUser, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
                             .addComponent(TFSenha))))
                 .addContainerGap())
         );
