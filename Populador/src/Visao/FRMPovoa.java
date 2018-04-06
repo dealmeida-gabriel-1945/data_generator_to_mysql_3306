@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Gabriel Guimarães
  */
 public class FRMPovoa extends javax.swing.JFrame {
-    
+
     private ArrayList<Atributo> atbs = new ArrayList<>();
     private QualqueCoisaControle qqc;
 
@@ -60,7 +60,7 @@ public class FRMPovoa extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Povoando");
+        setTitle("Generate");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -112,7 +112,7 @@ public class FRMPovoa extends javax.swing.JFrame {
 
         jLabel3.setText("Field name:");
 
-        jLabel4.setText("Tipo:");
+        jLabel4.setText("Type:");
 
         jLabel5.setText("Max length:");
 
@@ -240,7 +240,7 @@ public class FRMPovoa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel6.setText("<--- Voltar");
+        jLabel6.setText("<--- Back");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
@@ -308,21 +308,21 @@ public class FRMPovoa extends javax.swing.JFrame {
     }//GEN-LAST:event_TFMaxKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(TFNomeAtributo.getText().equals("")){
-            
-        }else{
+        if (TFNomeAtributo.getText().equals("")) {
+
+        } else {
             Atributo at = new Atributo();
             at.setNome(TFNomeAtributo.getText());
             at.setTipo(CBTipo.getItemAt(CBTipo.getSelectedIndex()));
-            if(TFMax.getText().equals("")){
+            if (TFMax.getText().equals("")) {
                 at.setMaxLength(0);
-            }else{
+            } else {
                 at.setMaxLength(Integer.parseInt(TFMax.getText()));
             }
-            
+
             atbs.add(at);
             this.adiciona(at);
-            
+
             TFMax.setText("");
             CBTipo.setSelectedIndex(0);
         }
@@ -343,26 +343,30 @@ public class FRMPovoa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(atbs.size()<=0){
-            JOptionPane.showMessageDialog(null, "Adicione atributos");
-        }else{
-            if(TFNomeTabela.getText().equals("")||TFQtdDePovo.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-            }else{
-                Tabela tbl = new Tabela(TFNomeTabela.getText(), Integer.parseInt(TFQtdDePovo.getText()), atbs);
-                for(int i = 1; i <= tbl.getVezes() ; i++){
-                    qqc.povoa(tbl);
+        try {
+            if (atbs.size() <= 0) {
+                JOptionPane.showMessageDialog(null, "Add columns");
+            } else {
+                if (TFNomeTabela.getText().equals("") || TFQtdDePovo.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Fill in the fields!");
+                } else {
+                    Tabela tbl = new Tabela(TFNomeTabela.getText(), Integer.parseInt(TFQtdDePovo.getText()), atbs);
+                    for (int i = 1; i <= tbl.getVezes(); i++) {
+                        qqc.povoa(tbl);
+                    }
+                    JOptionPane.showMessageDialog(null, "Complete");
                 }
-                JOptionPane.showMessageDialog(null, "Completo");
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Something went wrong!  :[");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void CBTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBTipoItemStateChanged
-        if(CBTipo.getItemAt(CBTipo.getSelectedIndex()).equals("BOOLEAN")){
+        if (CBTipo.getItemAt(CBTipo.getSelectedIndex()).equals("BOOLEAN")) {
             TFMax.setText("");
             TFMax.setEditable(false);
-        }else{
+        } else {
             TFMax.setEditable(true);
         }
     }//GEN-LAST:event_CBTipoItemStateChanged
@@ -424,11 +428,11 @@ public class FRMPovoa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
-    public void setConect(QualqueCoisaControle q){
+    public void setConect(QualqueCoisaControle q) {
         this.qqc = q;
     }
-    
+
     private void adiciona(Atributo at) {
-        CBAtributos.addItem(at.getNome()+" "+at.getTipo()+" MAX:"+at.getMaxLength());
+        CBAtributos.addItem(at.getNome() + " " + at.getTipo() + " MAX:" + at.getMaxLength());
     }
 }

@@ -50,7 +50,7 @@ public class ConnectionFactory {
             connection = DriverManager.getConnection(URL+bd, usuario, senha);
         } catch (SQLException e) {
             //se algo der errado vem para a instrução catch e da erro
-            JOptionPane.showMessageDialog(null, "ERRO: Erro na conexão com o banco de dados \n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR: Error while connecting to database\n"+e.getMessage());
         }
         return connection;
     }   

@@ -97,7 +97,7 @@ public class FRMMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int i = JOptionPane.showConfirmDialog(null, "Deseja mudar de banco de dados?");
+        int i = JOptionPane.showConfirmDialog(null, "Do you want to change the database?");
         if(i==0){
             new FRMInicio().setVisible(true);
             this.dispose();

@@ -43,7 +43,7 @@ public class FRMInicio extends javax.swing.JFrame {
         BTNEntra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Conectar");
+        setTitle("Conect");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("DB name:");
@@ -76,7 +76,7 @@ public class FRMInicio extends javax.swing.JFrame {
             }
         });
 
-        BTNEntra.setText("Conectar!");
+        BTNEntra.setText("Conect");
         BTNEntra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTNEntraActionPerformed(evt);
@@ -139,7 +139,7 @@ public class FRMInicio extends javax.swing.JFrame {
 
     private void BTNEntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNEntraActionPerformed
         if(TFBD.getText().equals("") || TFUser.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Preencha os campos!");
+            JOptionPane.showMessageDialog(null, "Fill in the fields!");
         }else{
             QualqueCoisaControle qqc = new QualqueCoisaControle(TFBD.getText(), TFUser.getText(), TFSenha.getText());
             if(qqc.pegaConnect() == true){
