@@ -77,8 +77,8 @@ public class Funcoes {
     }
 
     public static String geraScript(ArrayList<Tabela> tabelas, String dbname) {
-        String sql = "CREATE DATABASE "+dbname+";";
-        sql += "USE "+dbname+";";
+        String sql = "CREATE DATABASE "+dbname+"; \n";
+        sql += "USE "+dbname+"; \n";
         for (Tabela tab : tabelas) {
             sql += "CREATE TABLE IF NOT EXISTS `" + dbname + "`.`" + tab.getNome() + "` ( \n";
 
@@ -98,7 +98,7 @@ public class Funcoes {
                 }
             }
 
-            sql += ") \n";
+            sql += "); \n";
         }
 
         return sql;

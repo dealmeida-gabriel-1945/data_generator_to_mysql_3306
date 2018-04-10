@@ -21,8 +21,10 @@ import javax.swing.JOptionPane;
 public class FRMCriaBDPt1 extends javax.swing.JFrame {
 
     private ArrayList<Tabela> tabelas = new ArrayList<>();
+    private ArrayList<Tabela> tabelasN = new ArrayList<>();
     private ArrayList<Atributo> colunas = new ArrayList<>();
     private boolean pkEscolhido = false;
+    private boolean editando = false;
 
     /**
      * Creates new form FRMCriaBDPt1
@@ -31,6 +33,10 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
         initComponents();
         this.travaMaxLength();
         this.setLocationRelativeTo(null);
+        this.BTNEditTable.setEnabled(false);
+        this.BTNDeleteTable.setEnabled(false);
+        this.BTNCriaFK.setEnabled(false);
+        this.BTNGENERATE.setEnabled(false);
     }
 
     /**
@@ -68,7 +74,17 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
         CBTabelas = new javax.swing.JComboBox<>();
         BTNEditTable = new javax.swing.JButton();
         BTNDeleteTable = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BTNGENERATE = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        CBFK1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        CBFKN = new javax.swing.JComboBox<>();
+        BTNCriaFK = new javax.swing.JButton();
+        TFFKNome = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        CBXNNNt1 = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -172,7 +188,7 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
                         .addComponent(CBXNN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CBXAI)
-                        .addGap(0, 274, Short.MAX_VALUE)))
+                        .addGap(0, 269, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -203,7 +219,7 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setText("Add Table");
+        jButton1.setText("Add Table / Edit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -255,13 +271,88 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("Generate SQL file!");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BTNGENERATE.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BTNGENERATE.setText("Generate SQL file!");
+        BTNGENERATE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BTNGENERATEActionPerformed(evt);
             }
         });
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Foreign Key", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+
+        CBFK1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBFK1ItemStateChanged(evt);
+            }
+        });
+
+        jLabel7.setText("1:");
+
+        jLabel8.setText("to");
+
+        jLabel9.setText("N:");
+
+        BTNCriaFK.setText("Generate FK");
+        BTNCriaFK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNCriaFKActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("FK Name:");
+
+        CBXNNNt1.setText("Not Null");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBFK1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBFKN, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BTNCriaFK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CBXNNNt1))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TFFKNome)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CBFK1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(CBXNNNt1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(CBFKN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TFFKNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BTNCriaFK)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -270,7 +361,8 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTNGENERATE, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .addComponent(CBTabelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(BTNEditTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -287,8 +379,10 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTNEditTable)
                     .addComponent(BTNDeleteTable))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BTNGENERATE)
                 .addContainerGap())
         );
 
@@ -367,13 +461,27 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (this.confereCamposTabela() == false) {
             if (this.confereNomeTablea() == false) {
+                this.BTNEditTable.setEnabled(true);
+                this.BTNDeleteTable.setEnabled(true);
+                this.BTNCriaFK.setEnabled(true);
+                this.BTNGENERATE.setEnabled(true);
                 Tabela tal = new Tabela();
                 tal.setAtributos(colunas);
                 colunas = new ArrayList<Atributo>();
                 tal.setNome(TFTabelaNome.getText());
                 this.tabelas.add(tal);
                 this.mostraCBTabelas();
+                this.mostraCBFKN();
                 this.limpaCampos();
+                if (this.editando == true) {
+                    this.editando = false;
+                    this.BTNEditTable.setEnabled(true);
+                    this.BTNDeleteTable.setEnabled(true);
+                    this.BTNCriaFK.setEnabled(true);
+                    this.BTNGENERATE.setEnabled(true);
+                } else {
+
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "This table name was already taken!");
             }
@@ -443,6 +551,11 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
     private void BTNEditTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNEditTableActionPerformed
         int i = JOptionPane.showConfirmDialog(null, "Do you really want to edit this table?");
         if (i == 0) {
+            this.editando = true;
+            this.BTNEditTable.setEnabled(false);
+            this.BTNDeleteTable.setEnabled(false);
+            this.BTNCriaFK.setEnabled(false);
+            this.BTNGENERATE.setEnabled(false);
             Tabela tal = this.tabelas.get(CBTabelas.getSelectedIndex());
             this.colunas = tal.getAtributos();
             TFTabelaNome.setText(tal.getNome());
@@ -463,10 +576,11 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
         if (i == 0) {
             this.tabelas.remove(CBTabelas.getSelectedIndex());
             CBTabelas.removeItemAt(CBTabelas.getSelectedIndex());
+            this.mostraCBFKN();
         }
     }//GEN-LAST:event_BTNDeleteTableActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BTNGENERATEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNGENERATEActionPerformed
         if (TFNome.getText().equals("") || tabelas.size() <= 0) {
             JOptionPane.showMessageDialog(null, "Fill in all fields!");
         } else {
@@ -486,7 +600,7 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
                 System.err.println(e);
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BTNGENERATEActionPerformed
 
     private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
         // TODO add your handling code here:
@@ -497,6 +611,41 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
         i.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void CBFK1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBFK1ItemStateChanged
+        this.mostraCBFK1();
+        TFFKNome.setText("fk_" + CBFK1.getItemAt(CBFK1.getSelectedIndex()));
+    }//GEN-LAST:event_CBFK1ItemStateChanged
+
+    private void BTNCriaFKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCriaFKActionPerformed
+        if (TFFKNome.getText().isEmpty() == false) {
+            if (CBFKN.getItemCount() > 0) {
+                Atributo at = new Atributo();
+                at.setNome(TFFKNome.getText());
+                at.setAi(false);
+                if (CBXNNNt1.isSelected() == true) {
+                    at.setNn(true);
+                } else {
+                    at.setNn(false);
+                }
+                at.setPk(false);
+                at.setTipo("INT");
+
+                System.out.println("Tabelas: " + tabelas.size());
+                System.out.println("TabelasN: " + tabelasN.size());
+
+                for (Tabela tab : tabelasN) {
+                    if (tab.getNome().equals(CBFKN.getItemAt(CBFKN.getSelectedIndex()))) {
+                        tab.getAtributos().add(at);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Create another table!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fill in all fields!");
+        }
+    }//GEN-LAST:event_BTNCriaFKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,33 +685,43 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNAddColumn;
+    private javax.swing.JButton BTNCriaFK;
     private javax.swing.JButton BTNDeleteTable;
     private javax.swing.JButton BTNEditTable;
+    private javax.swing.JButton BTNGENERATE;
     private javax.swing.JComboBox<String> CBColunas;
+    private javax.swing.JComboBox<String> CBFK1;
+    private javax.swing.JComboBox<String> CBFKN;
     private javax.swing.JComboBox<String> CBTabelas;
     private javax.swing.JComboBox<String> CBTipo;
     private javax.swing.JCheckBox CBXAI;
     private javax.swing.JCheckBox CBXNN;
+    private javax.swing.JCheckBox CBXNNNt1;
     private javax.swing.JCheckBox CBXPK;
     private javax.swing.JTextField TFColunaNome;
+    private javax.swing.JTextField TFFKNome;
     private javax.swing.JTextField TFMaxLength;
     private javax.swing.JTextField TFNome;
     private javax.swing.JTextField TFTabelaNome;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     // End of variables declaration//GEN-END:variables
     private void travaMaxLength() {
         if (CBTipo.getSelectedIndex() != 0) {
@@ -630,6 +789,7 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
     }
 
     private void mostraCBTabelas() {
+        CBTabelas.removeAllItems();
         for (Tabela tal : tabelas) {
             CBTabelas.addItem(tal.getNome());
         }
@@ -646,5 +806,25 @@ public class FRMCriaBDPt1 extends javax.swing.JFrame {
         CBXNN.setSelected(false);
         CBXPK.setSelected(false);
         TFTabelaNome.setText("");
+    }
+
+    private void mostraCBFKN() {
+        CBFK1.removeAllItems();
+        for (Tabela tal : tabelas) {
+            CBFK1.addItem(tal.getNome());
+        }
+    }
+
+    private void mostraCBFK1() {
+        CBFKN.removeAllItems();
+        tabelasN = new ArrayList<Tabela>();
+        for (Tabela tab : tabelas) {
+            if (tab.getNome().equals(CBFK1.getItemAt(CBFK1.getSelectedIndex()))) {
+
+            } else {
+                this.tabelasN.add(tab);
+                CBFKN.addItem(tab.getNome());
+            }
+        }
     }
 }
