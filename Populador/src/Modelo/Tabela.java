@@ -21,6 +21,9 @@ public class Tabela {
         this.vezes = vezes;
         this.atributos = atributos;
     }
+    
+    public Tabela() {
+    }
 
     public String getNome(){
         return nome;
